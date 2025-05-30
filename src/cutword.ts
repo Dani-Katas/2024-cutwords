@@ -32,3 +32,4 @@ export function cutword(word: string) {
   }
   return syllables;
 }
+
