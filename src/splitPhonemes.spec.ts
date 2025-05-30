@@ -9,5 +9,13 @@ describe("splitPhonemes", () => {
 
     expect(phonemes).toEqual(["c", "a", "m", "p", "o"]);
   });
+
+  it("splits by characters", () => {
+    const word = "maraca";
+
+    const phonemes = splitPhonemes(word);
+
+    expect(phonemes).toEqual(["m", "a", "r", "a", "c", "a"]);
+  });
 });
 
