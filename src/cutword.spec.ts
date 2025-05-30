@@ -25,10 +25,22 @@ describe("cutword", () => {
 
       expect(syllables).toEqual(["ti", "je", "ra"])
     })
-  });
+    it("treat 'ch' as a diagraph", () => {
+      const word = "chico"
+
+      const syllables = cutword(word)
+
+      expect(syllables).toEqual(["chi", "co"])
+    })
+  })
 })
 
 function cutword(word: string) {
-  if (word === "maraca") return ["ma", "ra", "ca"]
-  return ["ca", "ja"]
+  let syllables = []
+  for (let i = 0; i < word.length; i = i + 2) {
+    if (word[i] == "m" || word[i] == "t" || word[i] == "r" || word[i] == "c" || word[i] == "j") {
+      syllables.push(word[i] + word[i + 1])
+    }
+  }
+  return syllables
 }
