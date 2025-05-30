@@ -1,3 +1,5 @@
+import { splitPhonemes } from "./splitPhonemes.js"
+
 export const vowels = ["a", "e", "i", "o", "u"]
 
 export function isVowel(character: string) {
@@ -12,14 +14,14 @@ export function cutword(word: string) {
   let syllables = [];
   let currentSyllable: string = "";
 
-  for (let i = 0; i < word.length; i++) {
-    currentSyllable += word[i];
+  const phonemes = splitPhonemes(word)
 
-    if (isVowel(word[i])) {
-      const isDyagraph = (word[i + 1] === "c" && word[i + 2] === "h") || (word[i + 1] === "r" && word[i + 2] === "r") || (word[i + 1] === "l" && word[i + 2] === "l");
+  for (let i = 0; i < phonemes.length; i++) {
+    currentSyllable += phonemes[i];
 
-      if (!isDyagraph && isConsonant(word[i + 1]) && isConsonant(word[i + 2]) && isVowel(word[i + 3])) {
-        currentSyllable += word[i + 1];
+    if (isVowel(phonemes[i])) {
+      if (isConsonant(phonemes[i + 1]) && isConsonant(phonemes[i + 2]) && isVowel(phonemes[i + 3])) {
+        currentSyllable += phonemes[i + 1];
         syllables.push(currentSyllable);
         currentSyllable = "";
         i++;
@@ -30,6 +32,8 @@ export function cutword(word: string) {
       currentSyllable = "";
     }
   }
+
+
   return syllables;
 }
 
