@@ -17,6 +17,14 @@ describe("cutword", () => {
 
       expect(syllables).toEqual(["ma", "ra", "ca"])
     })
+
+    it("keep the first consonant and the first vowel in the same syllable with three syllables", () => {
+      const word = "tijera"
+
+      const syllables = cutword(word)
+
+      expect(syllables).toEqual(["ti", "je", "ra"])
+    })
   });
 })
 
