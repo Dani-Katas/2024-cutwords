@@ -1,3 +1,7 @@
 export const splitPhonemes = (word: string) => {
-return ["c","a","m","p","o"]
-};
+  let phonemes = []
+  for (const i of word) {
+    phonemes.push(i)
+  }
+  return phonemes
+}
