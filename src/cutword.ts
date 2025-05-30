@@ -10,30 +10,34 @@ export function isConsonant(character: string) {
   return !isVowel(character)
 }
 
+function twoConsonantsSurroundedByVowels(phonemes: string[], i: number) {
+  return (
+    isVowel(phonemes[i]) && isConsonant(phonemes[i + 1]) && isConsonant(phonemes[i + 2]) && isVowel(phonemes[i + 3])
+  )
+}
+
 export function cutword(word: string) {
-  let syllables = [];
-  let currentSyllable: string = "";
+  let syllables = []
+  let currentSyllable: string = ""
 
   const phonemes = splitPhonemes(word)
 
   for (let i = 0; i < phonemes.length; i++) {
-    currentSyllable += phonemes[i];
+    currentSyllable += phonemes[i]
+
+    if (twoConsonantsSurroundedByVowels(phonemes, i)) {
+      currentSyllable += phonemes[i + 1]
+      syllables.push(currentSyllable)
+      currentSyllable = ""
+      i++
+      continue
+    }
 
     if (isVowel(phonemes[i])) {
-      if (isConsonant(phonemes[i + 1]) && isConsonant(phonemes[i + 2]) && isVowel(phonemes[i + 3])) {
-        currentSyllable += phonemes[i + 1];
-        syllables.push(currentSyllable);
-        currentSyllable = "";
-        i++;
-        continue;
-      }
-
-      syllables.push(currentSyllable);
-      currentSyllable = "";
+      syllables.push(currentSyllable)
+      currentSyllable = ""
     }
   }
 
-
-  return syllables;
+  return syllables
 }
-
