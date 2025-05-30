@@ -42,6 +42,14 @@ describe("cutword", () => {
       expect(syllables).toEqual(["cho", "rro"])
     })
 
+    it("treat 'll' as diagraph", () => {
+      const word = "callo"
+
+      const syllables = cutword(word)
+
+      expect(syllables).toEqual(["ca", "llo"])
+    })
+
     it.skip("works for words that end with a consonant", () => {
       const word = "chillar"
 
@@ -58,14 +66,6 @@ describe("cutword", () => {
       const syllables = cutword(word)
 
       expect(syllables).toEqual(["cam", "po"])
-    })
-
-    it.skip("", () => {
-      const word = "callo"
-
-      const syllables = cutword(word)
-
-      expect(syllables).toEqual(["ca", "llo"])
     })
   })
 })
@@ -88,7 +88,7 @@ function cutword(word: string) {
     currentSyllable += word[i]
 
     if (isVowel(word[i])) {
-      const isDyagraph = (word[i + 1] === "c" && word[i + 2] === "h") || (word[i + 1] === "r" && word[i + 2] === "r")
+      const isDyagraph = (word[i + 1] === "c" && word[i + 2] === "h") || (word[i + 1] === "r" && word[i + 2] === "r") || (word[i + 1] === "l" && word[i + 2] === "l")
 
       if (!isDyagraph && isConsonant(word[i + 1]) && isConsonant(word[i + 2]) && isVowel(word[i + 3])) {
         currentSyllable += word[i + 1]
