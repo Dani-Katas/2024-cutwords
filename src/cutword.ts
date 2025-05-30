@@ -1,4 +1,12 @@
-import { isConsonant, isVowel } from "./cutword.spec.js";
+export const vowels = ["a", "e", "i", "o", "u"]
+
+export function isVowel(character: string) {
+  return vowels.includes(character)
+}
+
+export function isConsonant(character: string) {
+  return !isVowel(character)
+}
 
 export function cutword(word: string) {
   let syllables = [];

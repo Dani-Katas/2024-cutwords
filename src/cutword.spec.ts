@@ -71,13 +71,3 @@ describe("cutword", () => {
   })
 })
 
-export const vowels = ["a", "e", "i", "o", "u"]
-
-export function isVowel(character: string) {
-  return vowels.includes(character)
-}
-
-export function isConsonant(character: string) {
-  return !isVowel(character)
-}
-
