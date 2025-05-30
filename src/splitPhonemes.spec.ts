@@ -17,4 +17,12 @@ describe("splitPhonemes", () => {
 
     expect(phonemes).toEqual(["m", "a", "r", "a", "c", "a"])
   })
+
+  it("considers diagraph", () => {
+    const word = "callo"
+
+    const phonemes = splitPhonemes(word)
+
+    expect(phonemes).toEqual(["c", "a", "ll", "o"])
+  })
 })
