@@ -52,7 +52,6 @@ describe("cutword", () => {
   })
 
   describe("rule 2", () => {
-
     it("splits two consonants between vowels into separate syllables", () => {
       const word = "campo"
 
@@ -68,27 +67,36 @@ describe("cutword", () => {
 
       expect(syllables).toEqual(["ca", "llo"])
     })
-  });
+  })
 })
 
-function cutword(word: string) {
-  const vowels = ["a", "e", "i", "o", "u"]
+const vowels = ["a", "e", "i", "o", "u"]
 
+function isVowel(character: string) {
+  return vowels.includes(character)
+}
+
+function isConsonant(character: string) {
+  return !isVowel(character)
+}
+
+function cutword(word: string) {
   let syllables = []
   let currentSyllable: string = ""
 
   for (let i = 0; i < word.length; i++) {
     currentSyllable += word[i]
 
-    if (vowels.includes(word[i])) {
-      if (word[i + 1] === "m" && word[i + 2] === "p" && word[i + 3] === "o") {
+    if (isVowel(word[i])) {
+      const isDyagraph = (word[i + 1] === "c" && word[i + 2] === "h") || (word[i + 1] === "r" && word[i + 2] === "r")
+
+      if (!isDyagraph && isConsonant(word[i + 1]) && isConsonant(word[i + 2]) && isVowel(word[i + 3])) {
         currentSyllable += word[i + 1]
         syllables.push(currentSyllable)
         currentSyllable = ""
-        i++;
+        i++
         continue
       }
-
 
       syllables.push(currentSyllable)
       currentSyllable = ""
