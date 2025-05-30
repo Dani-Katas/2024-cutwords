@@ -33,6 +33,22 @@ describe("cutword", () => {
 
       expect(syllables).toEqual(["chi", "co"])
     })
+
+    it("treat 'rr' as a diagraph", () => {
+      const word = "chorro"
+
+      const syllables = cutword(word)
+
+      expect(syllables).toEqual(["cho", "rro"])
+    })
+
+    it("works for words that end with a consonant", () => {
+      const word = "chillar"
+
+      const syllables = cutword(word)
+
+      expect(syllables).toEqual(["chi", "llar"])
+    })
   })
 })
 
