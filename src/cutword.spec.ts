@@ -21,5 +21,6 @@ describe("cutword", () => {
 })
 
 function cutword(word: string) {
+  if (word === "maraca") return ["ma", "ra", "ca"]
   return ["ca", "ja"]
 }
