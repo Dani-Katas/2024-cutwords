@@ -18,11 +18,18 @@ describe("splitPhonemes", () => {
     expect(phonemes).toEqual(["m", "a", "r", "a", "c", "a"])
   })
 
-  it("considers diagraph", () => {
-    const word = "callo"
+  it.each([
+    ["callo", ["c", "a", "ll", "o"]],
+    ["perro", ["p", "e", "rr", "o"]],
+    ["queso", ["qu", "e", "s", "o"]],
+    ["chabola", ["ch", "a", "b", "o", "l", "a"]],
+    ["guerra", ["gu", "e", "rr", "a"]],
+  ])(
+    "considers diagraphs in word %s",
+    (word: string, expectedPhonemes: string[]) => {
+      const phonemes = splitPhonemes(word)
 
-    const phonemes = splitPhonemes(word)
-
-    expect(phonemes).toEqual(["c", "a", "ll", "o"])
-  })
+      expect(phonemes).toEqual(expectedPhonemes)
+    },
+  )
 })
