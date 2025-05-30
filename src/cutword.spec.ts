@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { cutword } from "./cutword.js";
+import { describe, expect, it } from "vitest"
+import { cutword } from "./cutword.js"
 
 describe("cutword", () => {
   describe("regla 1", () => {
@@ -51,7 +51,7 @@ describe("cutword", () => {
       expect(syllables).toEqual(["ca", "llo"])
     })
 
-    it.skip("works for words that end with a consonant", () => {
+    it("works for words that end with a consonant", () => {
       const word = "chillar"
 
       const syllables = cutword(word)
@@ -70,4 +70,3 @@ describe("cutword", () => {
     })
   })
 })
-
