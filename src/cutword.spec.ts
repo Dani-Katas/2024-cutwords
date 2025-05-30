@@ -25,6 +25,7 @@ describe("cutword", () => {
 
       expect(syllables).toEqual(["ti", "je", "ra"])
     })
+
     it("treat 'ch' as a diagraph", () => {
       const word = "chico"
 
@@ -36,10 +37,17 @@ describe("cutword", () => {
 })
 
 function cutword(word: string) {
+  const vowels = ["a", "e", "i", "o", "u"]
+
   let syllables = []
-  for (let i = 0; i < word.length; i = i + 2) {
-    if (word[i] == "m" || word[i] == "t" || word[i] == "r" || word[i] == "c" || word[i] == "j") {
-      syllables.push(word[i] + word[i + 1])
+  let currentSyllable: string = ""
+
+  for (let i = 0; i < word.length; i++) {
+    currentSyllable += word[i]
+
+    if (vowels.includes(word[i])) {
+      syllables.push(currentSyllable)
+      currentSyllable = ""
     }
   }
   return syllables
