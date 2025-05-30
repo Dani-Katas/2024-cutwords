@@ -25,7 +25,7 @@ describe("splitPhonemes", () => {
     ["chabola", ["ch", "a", "b", "o", "l", "a"]],
     ["guerra", ["gu", "e", "rr", "a"]],
   ])(
-    "considers diagraphs in word %s",
+    "considers digraphs in word %s",
     (word: string, expectedPhonemes: string[]) => {
       const phonemes = splitPhonemes(word)
 
