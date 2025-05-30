@@ -1,8 +1,8 @@
-const diagraphs = ["ll", "ch", "rr", "qu", "gu"]
+const digraphs = ["ll", "ch", "rr", "qu", "gu"]
 
-function isDiagraph(word: string, i: number) {
-  for (const diagraph of diagraphs) {
-    if (word[i] === diagraph[0] && word[i + 1] === diagraph[1]) {
+function isDigraph(word: string, i: number) {
+  for (const digraph of digraphs) {
+    if (word[i] === digraph[0] && word[i + 1] === digraph[1]) {
       return true
     }
   }
@@ -14,7 +14,7 @@ export const splitPhonemes = (word: string) => {
   let phonemes = []
 
   for (let i = 0; i < word.length; i++) {
-    if (isDiagraph(word, i)) {
+    if (isDigraph(word, i)) {
       phonemes.push(`${word[i]}${word[i + 1]}`)
       i++
       continue
